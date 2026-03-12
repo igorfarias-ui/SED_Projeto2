@@ -30,7 +30,13 @@ Cada componente possui restrições físicas e operacionais que foram incorporad
 
 A modelagem do sistema foi realizada no software **CPN Tools**. Nele, as Redes de Petri são compostas por três elementos principais: places, que representam os estados do sistema; transitions, que representam eventos que alteram o estado do sistema; e tokens, que representam os recursos ou entidades do sistema.
 
-No modelo desenvolvido, os places (elipses) representam estados como máquinas livres, robôs disponíveis e buffers; transitions (retângulos) representam eventos como o início de processamento, coleta de peças e transporte; e tokens representam as peças ou disponibilidade de recursos. A utilização de Redes de Petri Coloridas permite representar diferentes tipos de tokens e estruturas de dados dentro do modelo, aumentando sua capacidade de representação. Abaixo, está descrita a modelagem de cada uma das componentes do sistema.
+No modelo desenvolvido, os places (elipses) representam estados como máquinas livres, robôs disponíveis e buffers; transitions (retângulos) representam eventos como o início de processamento, coleta de peças e transporte; e tokens representam as peças ou disponibilidade de recursos. A utilização de Redes de Petri Coloridas permite representar diferentes tipos de tokens e estruturas de dados dentro do modelo, aumentando sua capacidade de representação. Abaixo, está uma representação em diagrama de blocos do sistema completo.
+
+<div align = "center">
+<img src = "https://github.com/user-attachments/assets/22d66bdf-df8f-4e1a-8c4e-9e50baf2120f" width = "700px" />
+</div>
+
+Abaixo, está descrita a modelagem de cada uma das componentes do sistema.
 
 ### Máquinas de processamento (M1 e M2)
 
@@ -44,7 +50,7 @@ O funcionamento das máquinas ocorre em três estados principais:
 
 - **Peça pronta**: Aguardando a remoção da peça pelo robô.
 
-Uma máquina não pode iniciar um novo ciclo de processamento enquanto a peça anterior não tiver sido removida pelo robô. Essa restrição garante que o sistema respeite a limitação física das máquinas.
+Uma máquina não pode iniciar um novo ciclo de processamento enquanto a peça anterior não tiver sido removida pelo robô. Essa restrição garante que o sistema respeite a limitação física das máquinas. Há três transitions possíveis: Iniciar_Mx, que inicia o processamento; Fim_Mx, relacionada com a finalização do processamento da peça; e Pegar_Mx, relacionada com a movimentação do robô para pegar as peças prontas.
 
 ### Robô da célula
 
@@ -56,21 +62,25 @@ O robô possui dois estados principais:
 
 - **Robô carregando uma peça**
 
-O robô somente pode coletar uma peça quando a máquina terminar o processamento e o robô estiver disponível. Após coletar a peça, o robô se desloca até o buffer da célula e deposita o item produzido. 
+O robô somente pode coletar uma peça quando a máquina terminar o processamento e o robô estiver disponível. Após coletar a peça, o robô se desloca até o buffer da célula e deposita o item produzido. O modelo apresenta como transitions para o robô o Pegar_Mx, em que ele pega a peça das máquinas para fazer transporte e o Depositar_Buffer, em que ele transporta a peça e deposita ela no buffer.
 
 ### Buffer da célula
 
 Cada célula possui um buffer de saída com capacidade limitada a duas peças. Esse buffer representa uma área de armazenamento temporário antes que as peças sejam transportadas para o próximo estágio da produção.
 
-Para modelar essa restrição foi utilizado o conceito de slots disponíveis, representados por tokens adicionais que indicam quantos espaços livres existem no buffer. Quando o buffer atinge sua capacidade máxima, novas peças não podem ser depositadas, o que pode causar bloqueio temporário das máquinas.
+Para modelar essa restrição foi utilizado o conceito de slots disponíveis, representados por tokens adicionais que indicam quantos espaços livres existem no buffer. Quando o buffer atinge sua capacidade máxima, novas peças não podem ser depositadas, o que pode causar bloqueio temporário das máquinas. 
+
+As transitions apresentadas para o buffer da célula são os Depositar_Buffer, em que as peças chegam e Pegar_Cx, em que o robô geral pega a peça para levá-la ao buffer final.
 
 ### Robô Geral
 
-O robô geral é responsável por transportar peças dos buffers das células até o buffer final da fábrica. Esse robô coleta peças dos buffers das células e realiza o transporte até o depósito final, permitindo que o sistema continue produzindo mesmo quando os buffers intermediários estão parcialmente ocupados. Ele consegue transportar até duas peças por vez.
+O robô geral é responsável por transportar peças dos buffers das células até o buffer final da fábrica. Esse robô coleta peças dos buffers das células e realiza o transporte até o depósito final, permitindo que o sistema continue produzindo mesmo quando os buffers intermediários estão parcialmente ocupados. Ele consegue transportar até duas peças por vez. As transitions relacionadas a esse robô são as de Pegar_Cx, em que ele transporta a peça pronta de uma célula e o Depositar_Final, no qual ele deposita a peça no buffer final. 
 
 ### Buffer final da fábrica
 
 O sistema possui um buffer final responsável por armazenar os produtos acabados antes de sua remoção da fábrica. Esse buffer possui capacidade máxima de quatro peças, representando a limitação do espaço de armazenamento disponível na saída do sistema. Assim como nos buffers das células, a limitação de capacidade foi modelada utilizando slots disponíveis.
+
+Esse sistema é limitado pelo BufferGl_Slots, que impõe um limite de 4 peças, além disso as transitions relacionadas com ele são o Depositar_Final, na qual ela recebe peças e o Retirada, em que o agente externo remove uma peça do buffer, disponibilizando mais um slot.
 
 ### Estrutura do sistema
 
