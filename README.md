@@ -84,9 +84,7 @@ Esse sistema é limitado pelo BufferGl_Slots, que impõe um limite de 4 peças, 
 
 ### Estrutura do sistema
 
-O modelo foi desenvolvido utilizando Hierarchial Colored Petri Nets (HCPN). A página inicial representa o sistema completo da fábrica, enquanto páginas internas representam componentes específicos do sistema.
-
-Cada instância de célula reutiliza a mesma página **Celula_Manufatura**, permitindo a reutilização do modelo. Isso reduz a complexidade do sistema e facilita a manutenção e compreensão do modelo.
+O modelo foi desenvolvido utilizando Hierarchial Colored Petri Nets (HCPN). A página inicial representa o sistema completo da fábrica, enquanto páginas internas representam componentes específicos do sistema. Na página principal, chamada Fabrica, cada célula de manufatura é representada por uma Substitution Transition, denominada Célula 1, Célula 2 e Célula 3.  Cada instância de célula reutiliza a mesma página **Celula_Manufatura**, permitindo a reutilização do modelo. Isso reduz a complexidade do sistema e facilita a manutenção e compreensão do modelo.
 
 Abaixo, está a imagem da estrutura geral do sistema de manufatura modelado, que foi nomeado como Fábrica.
 <div align = "center">
