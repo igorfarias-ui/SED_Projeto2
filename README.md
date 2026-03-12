@@ -20,7 +20,7 @@ O sistema de manufatura é composto pelos seguintes elementos:
 
 - 1 buffer de saída por célula;
 
-- 1 robô global responsável pelo transporte final;
+- 1 robô geral responsável pelo transporte final;
 
 - 1 buffer final da fábrica.
 
@@ -116,6 +116,8 @@ O funcionamento do sistema ocorre da seguinte forma:
 Durante a simulação, é possível observar o fluxo de produção nas células, o transporte de peças pelos robôs, a competição por recursos e a limitação de capacidade dos buffers. Esses elementos permitem avaliar o comportamento dinâmico do sistema e identificar gargalos.
 
 Durante a operação do sistema podemos ocorrer alguns bloqueios, como nos casos de buffers cheios, robôs ocupados com outras taredas e máquinas aguardando remoção de peças, o que é comum em sistemas reais.
+
+## Vídeo do Youtube:
 
 
 
