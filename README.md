@@ -84,7 +84,7 @@ Esse sistema é limitado pelo BufferGl_Slots, que impõe um limite de 4 peças, 
 
 ### Estrutura do sistema
 
-O modelo foi desenvolvido utilizando Hierarchial Colored Petri Nets (HCPN). A página inicial representa o sistema completo da fábrica, enquanto páginas internas representam componentes específicos do sistema. Na página principal, chamada Fabrica, cada célula de manufatura é representada por uma Substitution Transition, denominada Célula 1, Célula 2 e Célula 3.  Cada instância de célula reutiliza a mesma página **Celula_Manufatura**, permitindo a reutilização do modelo. Isso reduz a complexidade do sistema e facilita a manutenção e compreensão do modelo. Ademais, os Buffer_SlotC pertencentes a Celula_Manufatura foram linkados aos slots na página Fábrica, garantindo, assim, que os slots voltem a ficar disponibilizados após serem levados pelo robô geral.
+O modelo foi desenvolvido utilizando Redes de Petri Coloridas Hierárquicas. A página inicial representa o sistema completo da fábrica, enquanto páginas internas representam componentes específicos do sistema. Na página principal, chamada Fabrica, cada célula de manufatura é representada por uma Substitution Transition, denominada Célula 1, Célula 2 e Célula 3.  Cada instância de célula reutiliza a mesma página **Celula_Manufatura**, permitindo a reutilização do modelo. Isso reduz a complexidade do sistema e facilita a manutenção e compreensão do modelo. Ademais, os Buffer_SlotC pertencentes a Celula_Manufatura foram linkados aos slots na página Fábrica, garantindo, assim, que os slots voltem a ficar disponibilizados após serem levados pelo robô geral.
 
 Abaixo, está a imagem da estrutura geral do sistema de manufatura modelado, que foi nomeado como Fábrica.
 
@@ -114,7 +114,7 @@ O funcionamento do sistema ocorre da seguinte forma:
 
 Durante a simulação, é possível observar o fluxo de produção nas células, o transporte de peças pelos robôs, a competição por recursos e a limitação de capacidade dos buffers. Esses elementos permitem avaliar o comportamento dinâmico do sistema e identificar gargalos.
 
-Durante a operação do sistema podemos ocorrer alguns bloqueios, como nos casos de buffers cheios, robôs ocupados com outras taredas e máquinas aguardando remoção de peças, o que é comum em sistemas reais.
+Durante a operação do sistema podem ocorrer alguns bloqueios, como nos casos de buffers cheios, robôs ocupados com outras tarefas e máquinas aguardando remoção de peças, o que é comum em sistemas reais.
 
 ## Vídeo do Youtube:
 
