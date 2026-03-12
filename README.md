@@ -33,7 +33,7 @@ A modelagem do sistema foi realizada no software **CPN Tools**. Nele, as Redes d
 No modelo desenvolvido, os places (elipses) representam estados como máquinas livres, robôs disponíveis e buffers; transitions (retângulos) representam eventos como o início de processamento, coleta de peças e transporte; e tokens representam as peças ou disponibilidade de recursos. A utilização de Redes de Petri Coloridas permite representar diferentes tipos de tokens e estruturas de dados dentro do modelo, aumentando sua capacidade de representação. Abaixo, está uma representação em diagrama de blocos do sistema completo.
 
 <div align = "center">
-<img src = "https://github.com/user-attachments/assets/22d66bdf-df8f-4e1a-8c4e-9e50baf2120f" width = "700px" />
+<img src = "https://github.com/user-attachments/assets/0c1bb70a-14dc-400d-820d-762bfefbd58c" width = "700px" />
 </div>
 
 Abaixo, está descrita a modelagem de cada uma das componentes do sistema.
@@ -76,7 +76,7 @@ As transitions apresentadas para o buffer da célula são os Depositar_Buffer, e
 
 O robô geral é responsável por transportar peças dos buffers das células até o buffer final da fábrica. Esse robô coleta peças dos buffers das células e realiza o transporte até o depósito final, permitindo que o sistema continue produzindo mesmo quando os buffers intermediários estão parcialmente ocupados. Ele consegue transportar até duas peças por vez. As transitions relacionadas a esse robô são as de Pegar_Cx, em que ele transporta a peça pronta de uma célula e o Depositar_Final, no qual ele deposita a peça no buffer final. 
 
-### Buffer final da fábrica
+### Buffer global da fábrica
 
 O sistema possui um buffer final responsável por armazenar os produtos acabados antes de sua remoção da fábrica. Esse buffer possui capacidade máxima de quatro peças, representando a limitação do espaço de armazenamento disponível na saída do sistema. Assim como nos buffers das células, a limitação de capacidade foi modelada utilizando slots disponíveis.
 
@@ -84,11 +84,12 @@ Esse sistema é limitado pelo BufferGl_Slots, que impõe um limite de 4 peças, 
 
 ### Estrutura do sistema
 
-O modelo foi desenvolvido utilizando Hierarchial Colored Petri Nets (HCPN). A página inicial representa o sistema completo da fábrica, enquanto páginas internas representam componentes específicos do sistema. Na página principal, chamada Fabrica, cada célula de manufatura é representada por uma Substitution Transition, denominada Célula 1, Célula 2 e Célula 3.  Cada instância de célula reutiliza a mesma página **Celula_Manufatura**, permitindo a reutilização do modelo. Isso reduz a complexidade do sistema e facilita a manutenção e compreensão do modelo.
+O modelo foi desenvolvido utilizando Hierarchial Colored Petri Nets (HCPN). A página inicial representa o sistema completo da fábrica, enquanto páginas internas representam componentes específicos do sistema. Na página principal, chamada Fabrica, cada célula de manufatura é representada por uma Substitution Transition, denominada Célula 1, Célula 2 e Célula 3.  Cada instância de célula reutiliza a mesma página **Celula_Manufatura**, permitindo a reutilização do modelo. Isso reduz a complexidade do sistema e facilita a manutenção e compreensão do modelo. Ademais, os Buffer_SlotC pertencentes a Celula_Manufatura foram linkados aos slots na página Fábrica, garantindo, assim, que os slots voltem a ficar disponibilizados após serem levados pelo robô geral.
 
 Abaixo, está a imagem da estrutura geral do sistema de manufatura modelado, que foi nomeado como Fábrica.
+
 <div align = "center">
-<img src = "https://github.com/user-attachments/assets/aea1ef7b-4414-4bca-a9c3-858d5781368b" width = "700px" />
+<img src = "https://github.com/user-attachments/assets/3d5d1895-5c96-49f7-899b-74afc121ce7f" width = "700px" />
 </div>
 
 Cada uma das três células segue o modelo da página Celula_Manufatura, que é mostrado abaixo:
@@ -117,8 +118,4 @@ Durante a operação do sistema podemos ocorrer alguns bloqueios, como nos casos
 
 ## Vídeo do Youtube:
 
-
-
-
-
-
+https://www.youtube.com/watch?v=53JYgN3TAeM
